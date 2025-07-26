@@ -13,10 +13,11 @@ public class StudentManager {
 
         // A simple while loop connecting to a switch case.
         while (running) {
-            System.out.println("\nStudent Manager Menu: ");
+
+            System.out.println("Student Manager Menu: ");
             System.out.println("\nOption 1: Add Student");
             System.out.println("\nOption 2: View Student List");
-            System.out.println("\nOption 3: Exit Programme");
+            System.out.println("\nOption 3: Exit Program");
             System.out.println("\nChoose an option shown above.");
 
             int choice = kb.nextInt();
@@ -24,11 +25,61 @@ public class StudentManager {
 
             switch (choice) {
 
+                // Case 1 is asking for Student Information.
                 case 1:
 
+                    if(studentCount < students.length) {
+
+                        System.out.println("Enter student first name: ");
+                        String firstName = kb.nextLine();
+                        System.out.println("Enter student last name: ");
+                        String lastName = kb.nextLine();
+
+                        int age = 0;
+                        boolean validAge = false;
+                        while (!validAge) { // A while loop to check that the user enters a valid age.
+                            System.out.println("Enter student age: ");
+                            if (kb.hasNextInt()) {
+                                age = kb.nextInt();
+                                kb.nextLine();
+                                if (age >= 1 && age <= 100) { // Checks that the user age is between 1 and 100.
+                                    validAge = true;
+                                }else{
+                                    System.out.println("Please enter a valid age.");
+                                }
+                            }else{
+                                System.out.println("Please enter a number.");
+                                kb.nextLine();
+                            }
+                        }
+
+                        students[studentCount] = new Student(firstName, lastName, age);
+                        studentCount++;
+
+                        System.out.println("Student information added successfully.");
+
+                    }else{
+                        System.out.println("Student list is full.");
+                    }
+
+                // Case 2 checks how many students there are and displays a list of all students entered.
                 case 2:
 
+                    if (studentCount == 0) { // If there are 0 students, will display the next line.
+                        System.out.println("No students have been added yet.");
+                    }else{ // If there are students, will display the student list.
+                        System.out.println("Student List: "); // Displays student list.
+                        for (int i = 0; i < studentCount; i++) {
+                            System.out.println((i + 1) + "." + students[i]);
+                        }
+                    }
+                    break;
+
                 case 3:
+
+                    System.out.println("Exiting program. Goodbye!");
+                    running = false;
+                    break;
 
                 default:
                     System.out.println("Please enter a valid option. Try again.");

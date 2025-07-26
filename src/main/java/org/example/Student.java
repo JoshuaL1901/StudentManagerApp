@@ -16,13 +16,14 @@ public class Student {
 
     }
 
+    // Constructors for getter methods.
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+
     // A constructor for displayed the student list.
     public String toString() {
 
         return "Name: " + firstName + " " + lastName + ", Age: " + age;
 
     }
-
-
-
 }

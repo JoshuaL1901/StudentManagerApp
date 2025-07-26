@@ -17,7 +17,9 @@ public class StudentManager {
             System.out.println("Student Manager Menu: ");
             System.out.println("\nOption 1: Add Student");
             System.out.println("\nOption 2: View Student List");
-            System.out.println("\nOption 3: Exit Program");
+            System.out.println("\nOption 3: Search Student");
+            System.out.println("\nOption 4: Delete Student");
+            System.out.println("\nOption 5: Exit Program");
             System.out.println("\nChoose an option shown above.");
 
             int choice = kb.nextInt();
@@ -61,6 +63,7 @@ public class StudentManager {
                     }else{
                         System.out.println("Student list is full.");
                     }
+                    break;
 
                 // Case 2 checks how many students there are and displays a list of all students entered.
                 case 2:
@@ -77,6 +80,31 @@ public class StudentManager {
 
                 case 3:
 
+                    System.out.println("Please enter the students first name or last name to search: ");
+                    String searchName = kb.nextLine();
+                    boolean found = false;
+
+                    for (int i = 0; i < studentCount; i++) {
+                        if (students[i].getFirstName().equalsIgnoreCase(searchName) ||
+                                students[i].getLastName().equalsIgnoreCase(searchName) ) {
+                            System.out.println("Student found: " + students[i]);
+                            found = true;
+                            break;
+                        }
+                    }
+
+                if (!found) {
+                    System.out.println("Student not found.");
+                }
+
+                case 4:
+
+                    // TODO
+
+                    break;
+
+                case 5:
+
                     System.out.println("Exiting program. Goodbye!");
                     running = false;
                     break;
@@ -87,9 +115,8 @@ public class StudentManager {
             }
         }
 
-
-
         // Closing the Scanner when done to avoid resource leaks.
         kb.close();
+
     }
 }

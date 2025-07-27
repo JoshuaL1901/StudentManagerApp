@@ -14,13 +14,13 @@ public class StudentManager {
         // A simple while loop connecting to a switch case.
         while (running) {
 
-            System.out.println("Student Manager Menu: ");
-            System.out.println("\nOption 1: Add Student");
-            System.out.println("\nOption 2: View Student List");
-            System.out.println("\nOption 3: Search Student");
-            System.out.println("\nOption 4: Delete Student");
-            System.out.println("\nOption 5: Exit Program");
-            System.out.println("\nChoose an option shown above.");
+            System.out.println("\n*****Student Manager Menu:*****");
+            System.out.println("Option 1: Add Student");
+            System.out.println("Option 2: View Student List");
+            System.out.println("Option 3: Search Student");
+            System.out.println("Option 4: Delete Student");
+            System.out.println("Option 5: Exit Program");
+            System.out.println("Choose an option shown above.");
 
             int choice = kb.nextInt();
             kb.nextLine();
@@ -80,7 +80,7 @@ public class StudentManager {
 
                 case 3:
 
-                    System.out.println("Please enter the students first name or last name to search: ");
+                    System.out.println("Enter the students first name or last name to search: ");
                     String searchName = kb.nextLine();
                     boolean found = false;
 
@@ -96,11 +96,33 @@ public class StudentManager {
                 if (!found) {
                     System.out.println("Student not found.");
                 }
+                break;
 
                 case 4:
 
-                    // TODO
+                    System.out.println("Enter the students first name or last name to delete: ");
+                    String deleteName = kb.nextLine();
+                    boolean deleted = false;
 
+                    for (int i = 0; i < studentCount; i++) {
+                        if (students[i].getFirstName().equalsIgnoreCase(deleteName) ||
+                                students[i].getLastName().equalsIgnoreCase(deleteName) ) {
+
+                            for (int j = i; j < studentCount - 1; j++) {
+                                students[j] = students[j + 1];
+                            }
+
+                            students[studentCount - 1] = null; // Clear the last element.
+                            studentCount--;
+                            deleted = true;
+                            System.out.println("Student deleted successfully.");
+                            break;
+                        }
+                    }
+
+                    if (!deleted) {
+                        System.out.println("No student found with that name.");
+                    }
                     break;
 
                 case 5:

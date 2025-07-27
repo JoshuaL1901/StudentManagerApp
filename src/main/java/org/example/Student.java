@@ -20,10 +20,10 @@ public class Student {
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
 
-    // A constructor for displayed the student list.
+    // A constructor for displaying the student list.
     public String toString() {
 
-        return "Name: " + firstName + " " + lastName + ", Age: " + age;
+        return " Name: " + firstName + " " + lastName + ", Age: " + age;
 
     }
 }

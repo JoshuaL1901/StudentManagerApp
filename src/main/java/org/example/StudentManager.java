@@ -78,6 +78,7 @@ public class StudentManager {
                     }
                     break;
 
+                // Case 3 is used to search for a student using their first name or last name.
                 case 3:
 
                     System.out.println("Enter the students first name or last name to search: ");
@@ -98,6 +99,7 @@ public class StudentManager {
                 }
                 break;
 
+                // Case 4 is used to delete a student using their first name or last name.
                 case 4:
 
                     System.out.println("Enter the students first name or last name to delete: ");
@@ -125,6 +127,7 @@ public class StudentManager {
                     }
                     break;
 
+                // Case 5 is used to exit the program.
                 case 5:
 
                     System.out.println("Exiting program. Goodbye!");
@@ -141,4 +144,18 @@ public class StudentManager {
         kb.close();
 
     }
+
+    /*
+     CVS code TODO
+
+    public static void saveStudentsToCSV(Student[] students, int studentCount) {
+
+    }
+
+    public static int loadStudentsFromCSV(Student[] students) {
+
+    }
+
+     */
+
 }

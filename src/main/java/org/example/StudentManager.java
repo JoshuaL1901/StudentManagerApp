@@ -1,8 +1,14 @@
 package org.example;
 
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class StudentManager {
+
     public static void main(String[] args) {
 
         // Declarations
@@ -10,6 +16,7 @@ public class StudentManager {
         Student[] students = new Student[100]; // An Array to keep track of how many students are stored.
         int studentCount = 0; // Keeps track of how many students have been stored.
         boolean running = true; // Controls the menu loop.
+        studentCount = loadStudentsFromCSV(students); // Loads students from CSV file.
 
         // A simple while loop connecting to a switch case.
         while (running) {
@@ -69,6 +76,7 @@ public class StudentManager {
                     }else{
                         System.out.println("Student list is full.");
                     }
+                    saveStudentsToCSV(students, studentCount);
                     break;
 
                 // Case 2 checks how many students there are and displays a list of all students entered.
@@ -131,6 +139,7 @@ public class StudentManager {
                     if (!deleted) {
                         System.out.println("No student found with that name.");
                     }
+                    saveStudentsToCSV(students, studentCount);
                     break;
 
                 // Case 5 is used to exit the program.
@@ -138,6 +147,7 @@ public class StudentManager {
 
                     System.out.println("Exiting program. Goodbye!");
                     running = false;
+                    saveStudentsToCSV(students, studentCount);
                     break;
 
                 default:
@@ -152,17 +162,39 @@ public class StudentManager {
 
     }
 
-    /*
-     CVS code TODO
-
     public static void saveStudentsToCSV(Student[] students, int studentCount) {
-
+        try (FileWriter fw = new FileWriter("students.csv")) {
+            for (int i = 0; i < studentCount; i++) {
+                Student s = students[i];
+                fw.write(s.getFirstName() + "," + s.getLastName() + "," + s.getAge() + "\n");
+            }
+            System.out.println("Students have been saved to students.csv successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving students: " + e.getMessage());
+        }
     }
 
     public static int loadStudentsFromCSV(Student[] students) {
-
+        int count = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("students.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null && count < students.length) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String firstName = parts[0];
+                    String lastName = parts[1];
+                    int age = Integer.parseInt(parts[2]);
+                    students[count++] = new Student(firstName, lastName, age);
+                }
+            }
+            System.out.println("Students have been loaded from students.csv successfully.");
+        } catch (FileNotFoundException e) {
+            System.out.println("No saved student data found (students.csv not found). Starting fresh.");
+        } catch (IOException e) {
+            System.out.println("Error loading students: " + e.getMessage());
+        }
+        return count;
     }
 
-     */
 
 }

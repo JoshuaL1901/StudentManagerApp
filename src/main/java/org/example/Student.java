@@ -26,4 +26,9 @@ public class Student {
         return " Name: " + firstName + " " + lastName + ", Age: " + age;
 
     }
+
+    public int getAge() {
+        return age;
+    }
+
 }

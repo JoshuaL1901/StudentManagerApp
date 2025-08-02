@@ -19,16 +19,13 @@ public class Student {
     // Constructors for getter methods.
     public String getFirstName() { return firstName; }
     public String getLastName() { return lastName; }
+    public int getAge() { return age; }
 
     // A constructor for displaying the student list.
     public String toString() {
 
         return " Name: " + firstName + " " + lastName + ", Age: " + age;
 
-    }
-
-    public int getAge() {
-        return age;
     }
 
 }

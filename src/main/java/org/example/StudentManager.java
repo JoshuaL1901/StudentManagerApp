@@ -22,8 +22,14 @@ public class StudentManager {
             System.out.println("Option 5: Exit Program");
             System.out.println("Choose an option shown above.");
 
-            int choice = kb.nextInt();
-            kb.nextLine();
+            String input = kb.nextLine();
+            int choice;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+                continue; // Goes back to the top of the while loop.
+            }
 
             switch (choice) {
 
@@ -138,6 +144,7 @@ public class StudentManager {
                     System.out.println("Please enter a valid option. Try again.");
 
             }
+
         }
 
         // Closing the Scanner when done to avoid resource leaks.
